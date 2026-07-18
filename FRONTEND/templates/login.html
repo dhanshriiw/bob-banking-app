@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Login — SecureBank{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-sm-10 col-md-6 col-lg-5">
+
+    <!-- Bank brand header -->
+    <div class="text-center mb-4">
+      <div class="display-5 fw-bold text-primary">🏦 SecureBank</div>
+      <p class="text-muted">Your trusted online banking partner</p>
+    </div>
+
+    <div class="card shadow-sm">
+      <div class="card-body p-4">
+        <h4 class="card-title mb-4 text-center fw-semibold">Sign In to Your Account</h4>
+
+        <form method="POST" action="{{ url_for('auth.login') }}" novalidate>
+
+          <!-- Username -->
+          <div class="mb-3">
+            <label for="username" class="form-label fw-medium">Username</label>
+            <div class="input-group">
+              <span class="input-group-text"><i>👤</i></span>
+              <input
+                type="text"
+                class="form-control"
+                id="username"
+                name="username"
+                value="{{ username | default('') }}"
+                placeholder="Enter your username"
+                autocomplete="username"
+                required
+              />
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="mb-4">
+            <label for="password" class="form-label fw-medium">Password</label>
+            <div class="input-group">
+              <span class="input-group-text"><i>🔒</i></span>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                name="password"
+                placeholder="Enter your password"
+                autocomplete="current-password"
+                required
+              />
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary btn-lg">
+              Sign In
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+    <!-- Demo hint -->
+    <div class="card mt-3 border-info">
+      <div class="card-body py-2 px-3 small text-muted">
+        <strong>Demo credentials:</strong>
+        Username: <code>john_doe</code> &nbsp;|&nbsp; Password: <code>password123</code>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
