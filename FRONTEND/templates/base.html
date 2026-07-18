@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}SecureBank{% endblock %}</title>
+
+  <!-- Bootstrap 5 CSS (local copy) -->
+  <link rel="stylesheet"
+        href="{{ url_for('static', filename='bootstrap/bootstrap.min.css') }}" />
+
+  <!-- Custom overrides -->
+  <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/custom.css') }}" />
+</head>
+<body>
+
+  <!-- ── Navbar (shown only when authenticated) ─────────────────── -->
+  {% if session.get('user_id') %}
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="{{ url_for('dashboard.dashboard') }}">
+        🏦 SecureBank
+      </a>
+
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('dashboard.dashboard') }}">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('transactions.deposit_form') }}">Deposit</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('transactions.withdraw_form') }}">Withdraw</a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <span class="navbar-text me-3 text-white-50">
+              👤 {{ session.get('fullname', session.get('username')) }}
+            </span>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-outline-light btn-sm"
+               href="{{ url_for('auth.logout') }}">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  {% endif %}
+
+  <!-- ── Flash Messages ─────────────────────────────────────────── -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="container mt-3" id="flash-container">
+      {% for category, message in messages %}
+      <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  {% endwith %}
+
+  <!-- ── Main Content ───────────────────────────────────────────── -->
+  <main class="container my-4">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────────────────────── -->
+  <footer class="text-center text-muted py-4 mt-auto border-top small">
+    &copy; {{ 2025 }} SecureBank &mdash; Demo Application
+  </footer>
+
+  <!-- Bootstrap 5 JS bundle (local copy) -->
+  <script src="{{ url_for('static', filename='bootstrap/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>
