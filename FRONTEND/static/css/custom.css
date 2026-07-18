@@ -1,0 +1,64 @@
+/* custom.css — Minimal overrides on top of Bootstrap 5 */
+
+/* ── Body ──────────────────────────────────────────────────────── */
+body {
+  background-color: #f0f2f5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main.container {
+  flex: 1;
+}
+
+/* ── Navbar brand ────────────────────────────────────────────────── */
+.navbar-brand {
+  font-size: 1.25rem;
+  letter-spacing: 0.5px;
+}
+
+/* ── Balance card ────────────────────────────────────────────────── */
+.card.bg-primary h1 {
+  letter-spacing: -1px;
+}
+
+/* ── Form cards ──────────────────────────────────────────────────── */
+.card {
+  border-radius: 0.75rem;
+}
+
+.card-header {
+  border-radius: 0.75rem 0.75rem 0 0 !important;
+}
+
+/* ── Input group text alignment ──────────────────────────────────── */
+.input-group-text {
+  min-width: 2.5rem;
+  justify-content: center;
+}
+
+/* ── Table ───────────────────────────────────────────────────────── */
+.table th {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ── Flash messages auto-dismiss padding ─────────────────────────── */
+#flash-container .alert {
+  border-radius: 0.5rem;
+}
+
+/* ── Footer ──────────────────────────────────────────────────────── */
+footer {
+  font-size: 0.8rem;
+  color: #6c757d;
+  background-color: #f8f9fa;
+}
+
+/* ── Demo hint card ──────────────────────────────────────────────── */
+.border-info {
+  border-color: #0dcaf0 !important;
+  background-color: #f0fbff;
+}
